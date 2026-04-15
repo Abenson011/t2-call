@@ -1,0 +1,58 @@
+﻿Section,Field,Content
+BRIEF,Brief text,"It's 7:45pm. You're midway through a client dinner with the VP Tax of your most important account. 10/31 is right around the corner and your LTF is, let's say a ""work in process"" The main course has just arrived. Then your phone lights up. It's T2. T2 has never called you directly. Not once. What happens next is entirely in this room's hands."
+,,
+QUESTION 1,Situation,Your phone is face-up on the table. T2's name is on the screen. The VP Tax is mid-sentence.
+QUESTION 1,Question,What do you do?
+QUESTION 1,Option A -- Label,Step outside and pick up
+QUESTION 1,Option A -- Subtext,"""Excuse me one moment"" -- napkin down, out the door, phone to ear"
+QUESTION 1,Option B -- Label,Let it ring to voicemail
+QUESTION 1,Option B -- Subtext,He can wait. This is an important dinner. You'll call after dessert.
+QUESTION 1,Option C -- Label,Decline and text him
+QUESTION 1,Option C -- Subtext,A quick message: 'At client dinner -- will call you straight after'
+QUESTION 1,Consequence A,"T2 answers on the first ring, you tell him where you are. He responds: 'Clients first,' he says. ""Call me tomorrow.' He hangs up before you're back at the table. The VP Tax tactfully pretends not to have noticed your rosy red cheeks."
+QUESTION 1,Consequence B,"T2 calls again, you let it ring. Twenty minutes later an email arrives: 'Call me tomorrow.' Just that. No subject line. You spend the rest of dinner checking your phone when you think nobody's watching."
+QUESTION 1,Consequence C -- CORRECT ANSWER,"T2 replies within the minute: 'Good, close it. Call me tomorrow.' You put your phone face-down and try to enjoy the rest of dinner while you ponder what time exactly you call T2…is he a morning person?"
+,,
+QUESTION 2,Situation,It's Saturday AM - you decide on 8:30 as you drive to meet a friend at the course - early shows how proactive you are but not unreasonable. . . He picks up on the second ring.
+QUESTION 2,Question,"""How are you doing?"" he asks. You respond:"
+QUESTION 2,Option A -- Label,"""Crushing it Boss"""
+QUESTION 2,Option A -- Subtext,"""Excited for a huge year-end - what's up?"""
+QUESTION 2,Option B -- Label,"""Heading to the driving range"""
+QUESTION 2,Option B -- Subtext,"""Taking out my anxieties and frustrations of the world on some golf balls. How are you?"""
+QUESTION 2,Option C -- Label,"""Pushing hard"""
+QUESTION 2,Option C -- Subtext,"""Tough market but we're getting done what we can. Trying to close out the year as strong as possible"""
+QUESTION 2,Consequence -- GOOD PATH (Q1 was C + Q2 is B),"A pause. Then: 'Interesting approach. Hit em straight, will create less anxiety and frustration for you. Why don't you swing by Monday -- we can catch up.' He hangs up. You hit a few more balls and join a good friend and client on the first tee"""
+QUESTION 2,Consequence -- BAD PATH (all other combinations),"OK.' A pause that is doing a lot of work. 'So you'll hit budget this year?"" Your hands get shaky and sweat begins to form on your upper lip…"
+,,
+QUESTION 3 (BAD PATH),NOTE,Shown if Q1 is not C or Q2 is not B. All three options lead to the lose outcome.
+QUESTION 3 (BAD PATH),Situation,You try to steady your voice
+QUESTION 3 (BAD PATH),Question,What do you tell him?
+QUESTION 3 (BAD PATH),Option A -- Label,"""I expect to be on target for budget, Sir - some risk with deal closing timelines so hard to sure"""
+QUESTION 3 (BAD PATH),Option A -- Subtext,Steady. Measured. Technically defensible.
+QUESTION 3 (BAD PATH),Option B -- Label,"""Fighting with TAG over a RC issue, once I win that will be in good shape"""
+QUESTION 3 (BAD PATH),Option B -- Subtext,"Honesty is the best policy, right?"
+QUESTION 3 (BAD PATH),Option C -- Label,"""Rocking and rolling - over budget with a good start to next year"""
+QUESTION 3 (BAD PATH),Option C -- Subtext,Bold. Ambitious. Optimistic. Confident.
+QUESTION 3 (BAD PATH),Consequence A,"Got it.' A pause. 'OK -- sounds like maybe you should sit down with Ernie and map out a plan. Good luck.' The line goes dead, along with any chance of playing well today."
+QUESTION 3 (BAD PATH),Consequence B,Got it.' Silence. 'Why don't you find some time with Ernie to work through that.' Click. 
+QUESTION 3 (BAD PATH),Consequence C,Got it.' The pause that follows carries an extraordinary amount of information. 'Hope so.. why don't you shoot me an update after year-end on where you end up'. Is there such thing as over-confidence?
+,,
+QUESTION 3 (GOOD PATH),NOTE,Shown only if Q1 = C AND Q2 = B. Option A leads to win. Options B and C lead to lose.
+QUESTION 3 (GOOD PATH),Situation,Monday morning. You swing by T2's office. He waves you into the chair opposite and Olga brings you a green tea.
+QUESTION 3 (GOOD PATH),Question,"""How'd you hit 'em on Saturday?"""
+QUESTION 3 (GOOD PATH),Option A -- Label,"""Some good, some bad"""
+QUESTION 3 (GOOD PATH),Option A -- Subtext,"""Had a great time out there with friends and clients"""
+QUESTION 3 (GOOD PATH),Option B -- Label,"""Long and straight"""
+QUESTION 3 (GOOD PATH),Option B -- Subtext,"""Just like I like my whiskey"""
+QUESTION 3 (GOOD PATH),Option C -- Label,"""Golf's hard"""
+QUESTION 3 (GOOD PATH),Option C -- Subtext,"""But I love it"""
+QUESTION 3 (GOOD PATH),Consequence A -- WIN ANSWER,"T2 smiles -- properly, for what may be the first time. 'That's what golf and this place is all about. Doing great things with great people.' He leans forward. 'Have you heard of Hogs Head?'"
+QUESTION 3 (GOOD PATH),Consequence B -- LOSE,'I don't drink.' A pause of considerable geological duration. 'Thanks for swinging by -- actually have a call popping up. You can shut the door on the way out.'
+QUESTION 3 (GOOD PATH),Consequence C -- LOSE,"Yes.' A small, measured smile. 'Sounds like it may not love you back. Try some lessons. Call's popping up actually -- please shut the door on the way out.'"
+,,
+WIN OUTCOME,Headline,Hogs Head.
+WIN OUTCOME,Body text,Everyone's heard of Hogs Head. You just didn't think you'd ever actually have a change to join - T2 asks if you have your check book handy.
+WIN OUTCOME,Insight text,"Clients first, Fun: Like what you do and with whom you do it, Integrity, Personal Reward…our culture and our core values guide the way!"
+,,
+LOSE OUTCOME,Headline,Ernie's calendar.
+LOSE OUTCOME,Body text,"Somewhere in the world Ernie is getting pinged. His calendar is hard to get onto, this is probably not the way you wanted to find your way in…"
