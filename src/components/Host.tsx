@@ -1,4 +1,3 @@
-import { QRCodeSVG } from 'qrcode.react';
 import { type GameState } from '../lib/types';
 import { getQuestion, getConsequenceText, isWin, BRIEF } from '../lib/case';
 import { supabase } from '../lib/supabase';
@@ -205,23 +204,13 @@ export default function Host({ gameState }: Props) {
               </p>
             </div>
 
-            {/* QR code + URL */}
-            <div className="flex items-center gap-8 bg-slate-800 border border-slate-700 rounded-2xl p-6">
-              <div className="bg-white rounded-xl p-3 shrink-0">
-                <QRCodeSVG
-                  value={`${window.location.origin}/?join`}
-                  size={140}
-                  fgColor="#1e293b"
-                  bgColor="#ffffff"
-                />
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Scan to join</p>
-                <p className="text-amber-400 font-mono text-lg break-all">{window.location.host}/?join</p>
-                <p className="text-slate-500 text-sm mt-2">
-                  Select <span className="text-slate-300">Join as participant</span> on your phone
-                </p>
-              </div>
+            {/* Participant join URL */}
+            <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+              <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Participant URL</p>
+              <p className="text-amber-400 font-mono text-xl">{window.location.host}/?join</p>
+              <p className="text-slate-500 text-sm mt-2">
+                Direct participants to this URL on their phones
+              </p>
             </div>
 
             <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">

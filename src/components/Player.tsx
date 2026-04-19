@@ -42,19 +42,33 @@ export default function Player({ gameState }: Props) {
   if (phase === 'lobby') {
     return (
       <div className="min-h-screen bg-slate-900 text-white flex flex-col">
-        <div className="border-b border-slate-800 px-5 py-4">
+        {/* Top bar */}
+        <div className="border-b border-slate-800 px-5 py-4 flex items-center justify-between">
           <h1 className="text-lg font-bold text-amber-400 tracking-tight">The T2 Call</h1>
-        </div>
-        <div className="flex-1 flex flex-col items-center justify-center px-5 py-10 space-y-6 text-center">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <PulsingDot color="bg-green-400" />
-            <span className="text-green-400 font-semibold">You're in!</span>
+            <span className="text-green-400 text-xs font-semibold">Connected</span>
           </div>
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5 text-left max-w-sm">
-            <p className="text-xs text-slate-500 uppercase tracking-widest mb-3">The brief</p>
-            <p className="text-slate-300 text-sm leading-relaxed italic">{BRIEF}</p>
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1 flex flex-col px-5 py-8 max-w-md mx-auto w-full">
+          {/* Headline */}
+          <div className="mb-8">
+            <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Your scenario</p>
+            <h2 className="text-2xl font-bold leading-tight text-white">The Brief</h2>
           </div>
-          <p className="text-slate-500 text-sm">Waiting for the presenter to start…</p>
+
+          {/* Brief card — large and readable */}
+          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 flex-1">
+            <p className="text-slate-200 text-base leading-relaxed">{BRIEF}</p>
+          </div>
+
+          {/* Waiting indicator */}
+          <div className="flex items-center gap-2 justify-center pt-8">
+            <PulsingDot />
+            <p className="text-slate-500 text-sm">Waiting for presenter to begin…</p>
+          </div>
         </div>
       </div>
     );
