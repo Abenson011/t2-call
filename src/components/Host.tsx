@@ -57,7 +57,7 @@ function VoteBars({
   const total = totalVotes(votes);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {options.map((opt) => {
         const pct = votePercent(votes, opt.key);
         const count = (votes as Record<string, number>)[opt.key] ?? 0;
@@ -70,7 +70,7 @@ function VoteBars({
             className="transition-opacity duration-300"
             style={{ opacity: dimmed ? 0.35 : 1 }}
           >
-            <div className="flex items-center justify-between mb-1.5">
+            <div className="flex items-center justify-between mb-1">
               <span className="font-medium text-slate-200 text-sm flex items-center gap-1.5">
                 {faded && isWinner && <span className="text-amber-400">✓</span>}
                 <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">
@@ -82,7 +82,7 @@ function VoteBars({
                 {count} <span className="text-slate-600">({pct}%)</span>
               </span>
             </div>
-            <div className="h-3 bg-slate-700 rounded-full overflow-hidden">
+            <div className="h-2.5 bg-slate-700 rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full ${isWinner || !faded ? 'bg-amber-400' : 'bg-slate-500'}`}
                 style={{ width: `${pct}%`, transition: 'width 0.4s ease' }}
@@ -91,7 +91,7 @@ function VoteBars({
           </div>
         );
       })}
-      <p className="text-xs text-slate-600 text-right pt-1">
+      <p className="text-xs text-slate-600 text-right">
         {total} vote{total !== 1 ? 's' : ''} cast
       </p>
     </div>
@@ -179,12 +179,12 @@ export default function Host({ gameState }: Props) {
   const currentDot = phase === 'lobby' ? -1 : question_index;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="h-screen overflow-hidden flex flex-col bg-slate-900 text-white">
       {/* Header */}
-      <div className="border-b border-slate-800 px-8 py-4 flex items-center justify-between">
+      <div className="shrink-0 border-b border-slate-800 px-8 py-3 flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-amber-400 tracking-tight">The T2 Call</h1>
-          <p className="text-xs text-slate-500 mt-0.5">Presenter view</p>
+          <p className="text-xs text-slate-500">Presenter view</p>
         </div>
         {phase !== 'lobby' && (
           <ProgressDots completed={completedCount} current={currentDot} />
@@ -192,45 +192,49 @@ export default function Host({ gameState }: Props) {
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-8 py-12">
+      <div className="flex-1 overflow-hidden max-w-3xl w-full mx-auto px-8 py-6 flex flex-col">
 
         {/* ── Lobby ── */}
         {phase === 'lobby' && (
-          <div className="space-y-8">
+          <div className="flex flex-col h-full gap-5">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Ready to begin</h2>
-              <p className="text-slate-400">
-                Ask the room to scan the QR code or open the URL on their phone and select{' '}
-                <em>Participant</em>, then start the case below.
+              <h2 className="text-2xl font-bold text-white mb-1">Ready to begin</h2>
+              <p className="text-slate-400 text-sm">
+                Project this screen — participants scan the QR code or visit the URL, then start the case below.
               </p>
             </div>
 
-            {/* QR code — project this screen so participants can scan to join */}
-            <div className="flex flex-col items-center gap-6 bg-slate-800 border border-slate-700 rounded-2xl p-8">
-              <p className="text-2xl font-bold text-white tracking-tight">Ready to Begin</p>
-              <div className="bg-white rounded-2xl p-4">
-                <QRCodeSVG
-                  value={`${window.location.origin}/?join`}
-                  size={200}
-                  fgColor="#1e293b"
-                  bgColor="#ffffff"
-                />
+            {/* QR + Brief side by side */}
+            <div className="flex gap-5 flex-1 min-h-0">
+              {/* QR card */}
+              <div className="flex flex-col items-center justify-center gap-4 bg-slate-800 border border-slate-700 rounded-2xl p-6 w-64 shrink-0">
+                <p className="text-lg font-bold text-white tracking-tight">Ready to Begin</p>
+                <div className="bg-white rounded-xl p-3">
+                  <QRCodeSVG
+                    value={`${window.location.origin}/?join`}
+                    size={150}
+                    fgColor="#1e293b"
+                    bgColor="#ffffff"
+                  />
+                </div>
+                <div className="text-center">
+                  <p className="text-amber-400 font-mono text-sm">{window.location.host}/?join</p>
+                  <p className="text-slate-500 text-xs mt-0.5">Scan or visit on your phone</p>
+                </div>
               </div>
-              <div className="text-center">
-                <p className="text-amber-400 font-mono text-lg">{window.location.host}/?join</p>
-                <p className="text-slate-500 text-sm mt-1">Scan or visit on your phone</p>
+
+              {/* Brief card */}
+              <div className="flex-1 bg-slate-800 border border-slate-700 rounded-2xl p-6 overflow-hidden">
+                <p className="text-xs text-slate-500 uppercase tracking-widest mb-3">
+                  Brief — shown to participants
+                </p>
+                <p className="text-slate-300 italic leading-relaxed text-sm">{BRIEF}</p>
               </div>
             </div>
 
-            <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-              <p className="text-xs text-slate-500 uppercase tracking-widest mb-3">
-                Brief — shown to participants
-              </p>
-              <p className="text-slate-300 italic leading-relaxed">{BRIEF}</p>
-            </div>
             <button
               onClick={handleBegin}
-              className="px-10 py-4 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-900 font-bold rounded-2xl text-lg transition-colors shadow-lg"
+              className="shrink-0 px-10 py-3 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-900 font-bold rounded-2xl text-base transition-colors shadow-lg self-start"
             >
               Begin the case
             </button>
@@ -239,14 +243,14 @@ export default function Host({ gameState }: Props) {
 
         {/* ── Voting ── */}
         {phase === 'voting' && (
-          <div className="space-y-8">
+          <div className="flex flex-col h-full gap-5">
             <div>
-              <p className="text-slate-500 text-sm mb-2">
+              <p className="text-slate-500 text-sm mb-1">
                 Q{question_index + 1} of 3 — {currentQuestion.situation}
               </p>
-              <h2 className="text-3xl font-bold leading-tight">{currentQuestion.question}</h2>
+              <h2 className="text-2xl font-bold leading-tight">{currentQuestion.question}</h2>
             </div>
-            <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+            <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex-1">
               <VoteBars
                 options={currentQuestion.options}
                 votes={votes}
@@ -254,11 +258,11 @@ export default function Host({ gameState }: Props) {
                 faded={false}
               />
             </div>
-            <div className="flex items-center gap-4">
+            <div>
               <button
                 onClick={handleReveal}
                 disabled={total === 0}
-                className="px-10 py-4 bg-amber-500 hover:bg-amber-400 disabled:opacity-40 disabled:cursor-not-allowed text-slate-900 font-bold rounded-2xl text-lg transition-colors shadow-lg"
+                className="px-10 py-3 bg-amber-500 hover:bg-amber-400 disabled:opacity-40 disabled:cursor-not-allowed text-slate-900 font-bold rounded-2xl text-base transition-colors shadow-lg"
               >
                 Reveal results
               </button>
@@ -268,14 +272,14 @@ export default function Host({ gameState }: Props) {
 
         {/* ── Consequence ── */}
         {phase === 'consequence' && (
-          <div className="space-y-8">
+          <div className="flex flex-col h-full gap-5">
             <div>
-              <p className="text-slate-500 text-sm mb-2">
+              <p className="text-slate-500 text-sm mb-1">
                 Q{question_index + 1} of 3 — Results
               </p>
-              <h2 className="text-3xl font-bold leading-tight">{currentQuestion.question}</h2>
+              <h2 className="text-2xl font-bold leading-tight">{currentQuestion.question}</h2>
             </div>
-            <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+            <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5">
               <VoteBars
                 options={currentQuestion.options}
                 votes={votes}
@@ -283,18 +287,18 @@ export default function Host({ gameState }: Props) {
                 faded={true}
               />
             </div>
-            <div className="bg-amber-500/10 border border-amber-500/25 rounded-2xl p-6">
-              <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <div className="bg-amber-500/10 border border-amber-500/25 rounded-2xl p-5 flex-1">
+              <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2">
                 Consequence
               </p>
-              <p className="text-white text-lg leading-relaxed">
+              <p className="text-white leading-relaxed">
                 {getConsequenceText(question_index, choices, revealedWinner)}
               </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div>
               <button
                 onClick={handleNext}
-                className="px-10 py-4 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-2xl text-lg transition-colors shadow-lg"
+                className="px-10 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-2xl text-base transition-colors shadow-lg"
               >
                 {question_index === 2 ? 'See the outcome' : 'Next question'}
               </button>

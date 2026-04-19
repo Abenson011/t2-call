@@ -41,9 +41,8 @@ export default function Player({ gameState }: Props) {
   // ── Lobby ──────────────────────────────────────────────────────────────────
   if (phase === 'lobby') {
     return (
-      <div className="min-h-screen bg-slate-900 text-white flex flex-col">
-        {/* Top bar */}
-        <div className="border-b border-slate-800 px-5 py-4 flex items-center justify-between">
+      <div className="h-screen overflow-hidden flex flex-col bg-slate-900 text-white">
+        <div className="shrink-0 border-b border-slate-800 px-5 py-3 flex items-center justify-between">
           <h1 className="text-lg font-bold text-amber-400 tracking-tight">The T2 Call</h1>
           <div className="flex items-center gap-1.5">
             <PulsingDot color="bg-green-400" />
@@ -51,21 +50,17 @@ export default function Player({ gameState }: Props) {
           </div>
         </div>
 
-        {/* Main content */}
-        <div className="flex-1 flex flex-col px-5 py-8 max-w-md mx-auto w-full">
-          {/* Headline */}
-          <div className="mb-8">
-            <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Your scenario</p>
-            <h2 className="text-2xl font-bold leading-tight text-white">The Brief</h2>
+        <div className="flex-1 overflow-hidden flex flex-col px-5 py-5 max-w-md mx-auto w-full">
+          <div className="mb-4">
+            <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Your scenario</p>
+            <h2 className="text-xl font-bold text-white">The Brief</h2>
           </div>
 
-          {/* Brief card — large and readable */}
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 flex-1">
+          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex-1 overflow-hidden">
             <p className="text-slate-200 text-base leading-relaxed">{BRIEF}</p>
           </div>
 
-          {/* Waiting indicator */}
-          <div className="flex items-center gap-2 justify-center pt-8">
+          <div className="flex items-center gap-2 justify-center pt-4">
             <PulsingDot />
             <p className="text-slate-500 text-sm">Waiting for presenter to begin…</p>
           </div>
@@ -77,26 +72,25 @@ export default function Player({ gameState }: Props) {
   // ── Voting ─────────────────────────────────────────────────────────────────
   if (phase === 'voting') {
     return (
-      <div className="min-h-screen bg-slate-900 text-white flex flex-col">
-        <div className="border-b border-slate-800 px-5 py-4 flex items-center justify-between">
+      <div className="h-screen overflow-hidden flex flex-col bg-slate-900 text-white">
+        <div className="shrink-0 border-b border-slate-800 px-5 py-3 flex items-center justify-between">
           <h1 className="text-lg font-bold text-amber-400 tracking-tight">The T2 Call</h1>
           <span className="text-xs text-slate-500">Q{question_index + 1} of 3</span>
         </div>
-        <div className="flex-1 px-5 py-8 space-y-6 max-w-md mx-auto w-full">
+        <div className="flex-1 overflow-hidden flex flex-col px-5 py-5 max-w-md mx-auto w-full gap-4">
           <div>
-            <p className="text-slate-500 text-sm mb-2">{currentQuestion.situation}</p>
-            <h2 className="text-xl font-bold leading-snug">{currentQuestion.question}</h2>
+            <p className="text-slate-500 text-sm mb-1">{currentQuestion.situation}</p>
+            <h2 className="text-lg font-bold leading-snug">{currentQuestion.question}</h2>
           </div>
 
           {!hasVoted ? (
-            <div className="space-y-3">
+            <div className="flex flex-col gap-2.5 flex-1">
               {currentQuestion.options.map((opt) => (
                 <button
                   key={opt.key}
                   onClick={() => handleVote(opt.key)}
                   disabled={submitting}
-                  className="w-full text-left bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 hover:border-amber-500/50 rounded-2xl p-4 transition-all disabled:opacity-60"
-                  style={{ minHeight: '72px' }}
+                  className="w-full text-left bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 hover:border-amber-500/50 rounded-2xl p-4 transition-all disabled:opacity-60 flex-1"
                 >
                   <div className="flex items-start gap-3">
                     <span className="text-amber-400 font-bold text-sm mt-0.5 uppercase w-4 shrink-0">
@@ -111,7 +105,7 @@ export default function Player({ gameState }: Props) {
               ))}
             </div>
           ) : (
-            <div className="space-y-5">
+            <div className="flex flex-col gap-4 flex-1 justify-center">
               <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5">
                 <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">
                   Vote cast
@@ -141,12 +135,12 @@ export default function Player({ gameState }: Props) {
     const iDiffered = myThisVote !== undefined && myThisVote !== winning_option;
 
     return (
-      <div className="min-h-screen bg-slate-900 text-white flex flex-col">
-        <div className="border-b border-slate-800 px-5 py-4 flex items-center justify-between">
+      <div className="h-screen overflow-hidden flex flex-col bg-slate-900 text-white">
+        <div className="shrink-0 border-b border-slate-800 px-5 py-3 flex items-center justify-between">
           <h1 className="text-lg font-bold text-amber-400 tracking-tight">The T2 Call</h1>
           <span className="text-xs text-slate-500">Q{question_index + 1} of 3</span>
         </div>
-        <div className="flex-1 px-5 py-8 space-y-5 max-w-md mx-auto w-full">
+        <div className="flex-1 overflow-hidden flex flex-col px-5 py-5 max-w-md mx-auto w-full gap-4">
           <div>
             <p className="text-slate-500 text-xs uppercase tracking-widest mb-2">The room chose</p>
             <div className="bg-slate-800 border border-slate-600 rounded-2xl p-4">
@@ -170,7 +164,7 @@ export default function Player({ gameState }: Props) {
             )}
           </div>
 
-          <div className="bg-amber-500/10 border border-amber-500/25 rounded-2xl p-5">
+          <div className="bg-amber-500/10 border border-amber-500/25 rounded-2xl p-4 flex-1">
             <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2">
               Consequence
             </p>
@@ -179,7 +173,7 @@ export default function Player({ gameState }: Props) {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 justify-center pt-2">
+          <div className="flex items-center gap-2 justify-center">
             <PulsingDot />
             <p className="text-slate-500 text-sm">Waiting for presenter…</p>
           </div>
@@ -190,11 +184,11 @@ export default function Player({ gameState }: Props) {
 
   // ── Outcome ─────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-slate-900 text-white flex flex-col">
-      <div className="border-b border-slate-800 px-5 py-4">
+    <div className="h-screen overflow-hidden flex flex-col bg-slate-900 text-white">
+      <div className="shrink-0 border-b border-slate-800 px-5 py-3">
         <h1 className="text-lg font-bold text-amber-400 tracking-tight">The T2 Call</h1>
       </div>
-      <div className="flex-1 px-5 py-8 max-w-md mx-auto w-full">
+      <div className="flex-1 overflow-hidden px-5 py-5 max-w-md mx-auto w-full">
         <OutcomePanel outcomeType={outcome_type} />
       </div>
     </div>
