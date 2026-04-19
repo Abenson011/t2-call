@@ -6,7 +6,9 @@ import Host from './components/Host';
 import Player from './components/Player';
 
 export default function App() {
-  const [role, setRole] = useState<Role | null>(null);
+  // ?join in the URL means this is a participant link — skip the role picker
+  const isJoinLink = new URLSearchParams(window.location.search).has('join');
+  const [role, setRole] = useState<Role | null>(isJoinLink ? 'player' : null);
   const [gameState, setGameState] = useState<GameState>(DEFAULT_GAME_STATE);
   const [loading, setLoading] = useState(true);
 
